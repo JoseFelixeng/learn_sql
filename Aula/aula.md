@@ -111,3 +111,54 @@ CREATE TABLE people (
 ```
 Um ponto importante sobre table é que alterar uma tabela em uso pode não ser uma boa pratica pois pode acarretar em oscilações e bugs dentro do BD.
 
+##### Renomeando uma tabela
+
+```sql 
+ALTER TABLE employees
+RENAME TO contractors;
+```
+
+##### Renomeando uma coluna
+
+```sql
+ALTER TABLE contractors
+RENAME COLUMN salary TO invoice;
+```
+
+##### Adicionar ou Remover uma coluna
+
+```sql
+ALTER TABLE contractors
+ADD COLUMN job_title TEXT;
+```
+
+```sql
+ALTER TABLE contractors
+DROP COLUMN is_manager;
+```
+
+#### Exemplo 
+
+Usando as informações vista até então faça as seguintes alterações na tabela people:
+
+    1 - Renomear a tabela para users
+    2 - Altere a coluna user para username
+    3 - Crie uma nova coluna para receber as senhas dos usuarios(TEXT)
+
+#### RESOLUÇÂO
+
+```sql
+
+ALTER TABLE people RENAME TO users;
+ALTER TABLE users RENAME COLUMN HANDLE TO username;
+ALTER TABLE users ADD COLUMN password TEXT;
+
+```
+
+O ato de criar uma nova tabela, ou uma nova coluna que até então não existia na tabela é chamado de `migração`, o que não é perigoso no sentido de perda de dados pois esta sendo criado uma tabela para receber novas informações, agora por exemplo se antes era usada a autenticação usando uma ``password` essa que foi retira pois a aplicação não necessita mais pelo fato da autenticação com a conta google, o ato de remover essa coluna é algo estritamente perigoso para o banco de dados.
+
+![alt text](./img/4.png)
+
+Migrações tem uma ordem natural a serem feita, por exemplo renomear uma coluna é algo natural, porém renomear uma tabela não é algo tão simples dito isso podemos dividir as mesmas em duas tabelas para simplificar as explicações.
+
+![alt text](./img/5.png)
