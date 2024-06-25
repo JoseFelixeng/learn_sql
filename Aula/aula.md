@@ -36,7 +36,7 @@ SELECT * FROM users;
 
 #### EXEMPLO
 
-Uma empresa possui uma tabela com varias informações, o HR solicita que sejam encontrados os dados dos usuarios que são eles `name` e `balance`, use a linguagem sql para automatizar a buscar.
+Uma empresa possui uma tabela com varias informações, o RH solicita que sejam encontrados os dados dos usuarios que são eles `name` e `balance`, use a linguagem sql para automatizar a buscar.
 
 ![alt text](./img/2.png)
 
@@ -162,3 +162,34 @@ O ato de criar uma nova tabela, ou uma nova coluna que até então não existia 
 Migrações tem uma ordem natural a serem feita, por exemplo renomear uma coluna é algo natural, porém renomear uma tabela não é algo tão simples dito isso podemos dividir as mesmas em duas tabelas para simplificar as explicações.
 
 ![alt text](./img/5.png)
+
+O SQLlite não se importa muito com os tipos de dados logo dependendo de como estiver sendo armazenado o tipo de dado pode ocorrer inconsistencias nas inserções de novos dados para as tabelas.
+
+O SQL suporta varios tipos de dados, dentre eles: 
+  1 - ``` NULL``` - Null value
+  2 - ``` INTEGER ``` - Um valor inteiro que pode ser salvo em até 8 bits.
+  3 - ``` REAL``` - Um numero salvo em ponto flutuante que pode ter até 64 bits.
+  4 - ``` TEXT ``` - Uma string que pode ser salva como UTF-8.
+  5 - ``` BLOB ``` - Abreviação de objeto binário grande e normalmente usado para imagens, áudio ou outros multimídia.
+  6 - ``` BOLEAN ``` - São valores associados a verdadeiro ou falso, porém recebem no banco apenas 0 ou 1.
+
+
+EX: 
+Escreva uma atualização na Table posts:
+
+  1 - A coluna ```author_id``` deve ser renomeada para ```poster_id``` 
+
+  2 - Adicione uma nova coluna chamada ```is_edited``` com um tipo ```BOOLEAN```
+
+  3 - Remova a coluna ```is_sponsored```
+
+
+### Resolução
+
+```
+ALTER TABLE posts RENAME COLUMN author_id TO poster_id;
+ALTER TABLE posts ADD COLUMN is_edited BOOLEAN; 
+ALTER TABLE posts DROP COLUMN is_sponsored;
+```
+
+  ## Constrains 
